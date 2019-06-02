@@ -4,7 +4,11 @@ soma = 0
 opcao = ' '
 while opcao != 'N':
     opcao = ' '
-    numero = int(input('Digite um número: '))
+    numero = -1
+    while numero < 0 or numero > 1000:
+        numero = int(input('Digite um número: '))
+        if numero < 0 or numero > 1000:
+            print('Você deve digitar um número 0 e 1000.')
     if menor == 0:
         menor = numero
     if numero > maior:
