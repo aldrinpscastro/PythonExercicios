@@ -1,2 +1,2 @@
 # PythonExercicios
-Execícios feitos do site python.org.br
+Execícios feitos do site https://wiki.python.org.br/ListaDeExercicios
