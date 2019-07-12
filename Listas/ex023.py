@@ -4,9 +4,11 @@ def bytesparamegabytes(numero):
     numero = numero.replace('.', ',')
     numero = f'{numero} MB'
     return numero
-def pontoparavirgula(numero):
-    numero = str(round(numero, 2)).replace('.', ',')
-    return numero
+def porcentoespaco(numero):
+    porcento = round(numero / sum(espacosutilizados) * 100,2)
+    porcento = str(porcento).replace('.',',')
+    return f'{porcento} %'
+
 espacosutilizados = []
 nomes = []
 numero = ''
@@ -30,6 +32,6 @@ with open('../relatorio.txt', 'w') as ff:
                 nome += i
     for i in range(0, len(nomes)):
         ff.write(f'{i + 1:<5}{nomes[i]:^9}{bytesparamegabytes(espacosutilizados[i]):^18}'
-              f'{f"{pontoparavirgula(espacosutilizados[i]/sum(espacosutilizados) * 100)} %":^10}\n')
+              f'{f"{porcentoespaco(espacosutilizados[i])}":^10}\n')
     ff.write(f'\nEspaço total ocupado: {bytesparamegabytes(sum(espacosutilizados))}\n')
     ff.write(f'Espaço médio utilizado: {bytesparamegabytes(mean(espacosutilizados))}\n')
