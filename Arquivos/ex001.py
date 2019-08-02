@@ -1,5 +1,5 @@
 Ips = []
-with open('../listadeips.txt', 'r') as IPS:
+with open('../entrada.txt', 'r') as IPS:
     for ip in IPS:
         Ip = []
         numero = ''
@@ -15,30 +15,31 @@ with open('../listadeips.txt', 'r') as IPS:
                 Ip = []
             else:
                 numero += ip[c]
-Ips_validos = []
-Ips_invalidos = []
-for ip in Ips:
-    for i in ip:
-        if i > 255 or i < 0 or i == 234:
-            if ip not in Ips_invalidos:
-                Ips_invalidos.append(ip)
-    for i in ip:
-        if i < 255 and i >= 0 and ip not in Ips_invalidos:
-            if ip not in Ips_validos:
-                Ips_validos.append(ip)
-print('[Endereços válidos:]')
-for ip in Ips_validos:
-    for i in range(0, len(ip)):
-        if i == len(ip) - 1:
-            print(ip[i], end='')
-        else:
-            print(ip[i], end='.')
-    print()
-print('[Endereços inválidos:]')
-for ip in Ips_invalidos:
-    for i in range(0, len(ip)):
-        if i == len(ip) - 1:
-            print(ip[i], end='')
-        else:
-            print(ip[i], end='.')
-    print()
+with open('../saida.txt', 'w') as saida:
+    Ips_validos = []
+    Ips_invalidos = []
+    for ip in Ips:
+        for i in ip:
+            if i > 255 or i < 0:
+                if ip not in Ips_invalidos:
+                    Ips_invalidos.append(ip)
+        for i in ip:
+            if i < 255 and i >= 0 and ip not in Ips_invalidos:
+                if ip not in Ips_validos:
+                    Ips_validos.append(ip)
+
+    saida.write('[Endereços válidos:]\n')
+    for ip in Ips_validos:
+        for i in range(0, len(ip)):
+            if i == len(ip) - 1:
+                saida.write(f'{ip[i]}\n')
+            else:
+                saida.write(f'{ip[i]}.')
+    saida.write('\n')
+    saida.write('[Endereços inválidos:]\n')
+    for ip in Ips_invalidos:
+        for i in range(0, len(ip)):
+            if i == len(ip) - 1:
+                saida.write(f'{ip[i]}\n')
+            else:
+                saida.write(f'{ip[i]}.')
